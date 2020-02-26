@@ -4,6 +4,7 @@
       <%= content_tag :div, value, class: "flash #{key} mb-4" %>
     <% end %>
   <% end %>
+  <%= get_header_info(@user) %>
   <% if @posts.count == 0 %>
     <%= "Nothing here yet." %>
   <% end %>
@@ -13,7 +14,7 @@
         <h3 class="mb-2"><%= link_to post.title, post %></h3>
         <p class="mb-2"><%= simple_format post.content.truncate(200) %></p>
         <div class="relative">
-          <div class="text-xs text-gray-500"><%= get_author post.id %> <%= distance_of_time_in_words(Time.now, post.created_at) + " ago" %></div>
+          <div class="text-xs text-gray-500 mt-2"><%= get_author_and_time(post) %></div>
           <% if user_signed_in? && current_user.id == post.user_id %>
             <div class="md:absolute right-0 top-0 flex mt-2">
               <% if post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 text-xs px-4 py-2 mr-4 md:mr-0 rounded">Private</span><% end %>

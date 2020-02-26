@@ -8,6 +8,7 @@
     <h3 class="mb-4 text-xl"><%= @post.title %></h3>
     <article>
       <%= simple_format @post.content %>
+      <div class="text-xs text-gray-500 mt-2"><%= get_author_and_time(@post) %></div>
     </article>
     <% if user_signed_in? && current_user.id == @post.user_id %>
       <div class="pt-4 flex">

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     collection do
-      get :mydreams, :alldreams
+      get :mydreams, :userdreams
     end
   end
 

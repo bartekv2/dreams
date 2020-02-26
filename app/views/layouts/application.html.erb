@@ -38,7 +38,7 @@
         <nav class="mt-8 justify-center">
           <ul class="flex flex-wrap text-xs text-center md:text-left">
               <li class="md:mr-3 mb-2 md:mb-0 flex-grow md:flex-grow-0"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn" %>
-              <li class="md:mr-3 mb-2 md:mb-0 flex-grow md:flex-grow-0"><%= active_link_to 'Show all dreams', alldreams_posts_path, :class => "btn" %>
+              <li class="md:mr-3 mb-2 md:mb-0 flex-grow md:flex-grow-0"><%= active_link_to 'Show all dreams', root_path, active: :exact, :class => "btn" %>
               <li class="md:mr-3 flex-grow md:flex-grow-0"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn" %>
           </ul>
         </nav>

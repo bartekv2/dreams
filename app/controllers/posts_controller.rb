@@ -7,14 +7,19 @@ class PostsController < ApplicationController
     @posts = show_all_dreams.page(params[:page]).per(5)
   end
 
-  def alldreams
-    @posts = show_all_dreams.page(params[:page]).per(5)
-    render action: 'index'
-  end
-
   def mydreams
     @posts = Post.where(user_id: current_user.id).order("created_at DESC").page(params[:page]).per(5)
     render action: 'index'
+  end
+
+  def userdreams
+    @posts = show_all_dreams.where(user_id: params[:user_id]).order("created_at DESC").page(params[:page]).per(5)
+    @user = User.find(params[:user_id]).username
+    if user_signed_in? && current_user.username == @user
+      redirect_to controller: :posts, action: :mydreams, method: :post
+    else
+      render action: 'index'
+    end
   end
 
   def new
@@ -59,10 +64,10 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def get_author(post_id)
+  def get_author_by_post_id(post_id)
     User.find(Post.find(post_id).user_id).username
   end
-  helper_method :get_author
+  helper_method :get_author_by_post_id
 
   private
   def post_params
