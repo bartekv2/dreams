@@ -1,5 +1,5 @@
 class AddPublishedToPosts < ActiveRecord::Migration[6.0]
   def change
-    add_column :posts, :published, :boolean
+    add_column :posts, :private, :boolean
   end
 end
