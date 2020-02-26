@@ -2,11 +2,13 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @font-face {
+  font-family: "Kanit-Regular";
   font-family: "PressStart2P-Regular";
+  src: url('/assets/Kanit-Regular');
   src: url('/assets/PressStart2P-Regular');
 }
 body {
-  font-family: "PressStart2P-Regular", serif
+  font-family: "PressStart2P-Regular", sans-serif
 }
 
 h1 {
