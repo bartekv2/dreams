@@ -1,0 +1,36 @@
+<div class="flex justify-center mb-48 w-full">
+  <div>
+    <h2 class="mb-4">Log in</h2>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "flash #{key} mb-4" %>
+      <% end %>
+
+      <div class="form-inputs w-full">
+        <%= f.input :login,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Login",
+                    label: false,
+                    input_html: { autocomplete: "login", class: "mb-4" } %>
+        <%= f.input :password,
+                    required: true,
+                    placeholder: "Password",
+                    label: false,
+                    input_html: { autocomplete: "current-password", class: "mb-4" } %>
+        <label class="flex justify-start items-start">
+          <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+            <%= f.check_box :remember_me, as: :boolean, label: false, wrapper: false, class: "hidden" if devise_mapping.rememberable? %>
+            <svg class="fill-current hidden w-4 h-4 text-blue-700 pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+          </div>
+          <div class="select-none">Remember me</div>
+        </label>
+
+      <div class="form-actions my-4">
+        <%= f.button :submit, "Log in" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

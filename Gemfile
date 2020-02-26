@@ -30,6 +30,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'tailwindcss', '~> 1.0', '>= 1.0.3'
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
+gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'letter_opener', '~> 1.7', :group => :development
+gem 'active_link_to'
+gem 'kaminari', '~> 1.2'
+gem 'capistrano', '~> 3.11', '>= 3.11.2'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

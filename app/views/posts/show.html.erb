@@ -1,0 +1,20 @@
+<div>
+  <% if !flash.empty? %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key} mb-4" %>
+    <% end %>
+  <% end %>
+  <section>
+    <h3 class="mb-4 text-xl"><%= @post.title %></h3>
+    <article>
+      <%= simple_format @post.content %>
+    </article>
+    <% if user_signed_in? && current_user.id == @post.user_id %>
+      <div class="pt-4 flex">
+        <% if @post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 px-4 py-2 mr-4 rounded">Private Dream</span><% end %>
+        <%= button_to "Edit", edit_post_path(@post), method: :get, :class => "btn mr-4" %>
+        <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn del" %>
+      </div>
+    <% end %>
+  </section>
+</div>
