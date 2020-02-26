@@ -4,6 +4,7 @@
     <title>Dream on!</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= favicon_link_tag asset_path('favicon.ico') %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -18,34 +19,36 @@
     </script>
   </head>
   <body class="bg-blue-800 text-gray-200 py-4">
-    <div class="container mx-auto">
+    <div class="container mx-auto px-4">
       <header class="relative pb-4">
         <h1 class="text-3xl italic"><%= link_to 'Dream on!', root_path, class: "text-red-400" %></h1>
         <span class="text-red-300 italic text-xs absolute -mt-2">all your dreams in one place</span>
-        <div class="text-xs absolute top-0 right-0">
-        <% if user_signed_in? %>
-          <%= current_user.username %>
-          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Log in', new_user_session_path %>
-          <%= link_to "Sign up", new_user_registration_path %>
-        <% end %>
+        <div class="text-xs md:absolute md:top-0 md:right-0 mt-8 md:mt-0">
+          <% if user_signed_in? %>
+
+              <%= current_user.username %>
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to 'Log in', new_user_session_path %>
+              <%= link_to "Sign up", new_user_registration_path %>
+          <% end %>
         </div>
+
         <% if user_signed_in? %>
-        <nav class="mt-8">
-          <ul class="flex text-xs">
-              <li class="mr-3"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn" %>
-              <li class="mr-3"><%= active_link_to 'Show all dreams', alldreams_posts_path, :class => "btn" %>
-              <li class="mr-3"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn" %>
+        <nav class="mt-8 justify-center">
+          <ul class="flex flex-wrap text-xs text-center md:text-left">
+              <li class="md:mr-3 mb-2 md:mb-0 flex-grow md:flex-grow-0"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn" %>
+              <li class="md:mr-3 mb-2 md:mb-0 flex-grow md:flex-grow-0"><%= active_link_to 'Show all dreams', alldreams_posts_path, :class => "btn" %>
+              <li class="md:mr-3 flex-grow md:flex-grow-0"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn" %>
           </ul>
         </nav>
         <% end %>
       </header>
-      <div class="flex">
-        <main class="flex w-2/3">
+      <div class="md:flex">
+        <main class="flex w-full md:w-2/3">
           <%= yield %>
         </main>
-        <aside class="w-1/3 pl-8 text-right text-xs">
+        <aside class="md:w-1/3 md:pl-8 mt-4 md:mt-0 text-right text-xs">
           <ul>
             <li class="mb-1">Total Dreams: <%= get_number_of_dreams %></li>
             <li class="mb-1">Total Dreamers: <%= get_number_of_dreamers %></li>

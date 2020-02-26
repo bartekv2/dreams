@@ -15,9 +15,9 @@
         <div class="relative">
           <div class="text-xs text-gray-500"><%= get_author post.id %> <%= distance_of_time_in_words(Time.now, post.created_at) + " ago" %></div>
           <% if user_signed_in? && current_user.id == post.user_id %>
-            <div class="absolute right-0 top-0 flex mt-2">
-              <% if post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 text-xs px-4 py-2 rounded">Private Dream</span><% end %>
-              <%= button_to "Edit", edit_post_path(post), method: :get, :class => "btn btn-small ml-4 mr-4 inline-block" %>
+            <div class="md:absolute right-0 top-0 flex mt-2">
+              <% if post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 text-xs px-4 py-2 mr-4 md:mr-0 rounded">Private</span><% end %>
+              <%= button_to "Edit", edit_post_path(post), method: :get, :class => "btn btn-small md:ml-4 mr-4 inline-block" %>
               <%= button_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-small del inline-block" %>
             </div>
           <% end %>
