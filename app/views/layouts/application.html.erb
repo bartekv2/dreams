@@ -11,7 +11,8 @@
   <body class="bg-blue-800 text-gray-200 py-4">
     <div class="container mx-auto">
       <header class="relative pb-4">
-        <h1 class="mb-4 text-3xl italic"><%= link_to 'Dream on!', root_path, class: "text-red-400" %></h1>
+        <h1 class="text-3xl italic"><%= link_to 'Dream on!', root_path, class: "text-red-400" %></h1>
+        <span class="text-red-300 italic text-xs absolute -mt-2">all your dreams in one place</span>
         <div class="text-xs absolute top-0 right-0">
         <% if user_signed_in? %>
           <%= current_user.username %>
@@ -22,8 +23,8 @@
         <% end %>
         </div>
         <% if user_signed_in? %>
-        <nav>
-          <ul class="flex mb-4 text-xs">
+        <nav class="mt-8">
+          <ul class="flex text-xs">
               <li class="mr-3"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn" %>
               <li class="mr-3"><%= active_link_to 'Show all dreams', alldreams_posts_path, :class => "btn" %>
               <li class="mr-3"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn" %>
