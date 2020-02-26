@@ -20,7 +20,7 @@
   </head>
   <body class="bg-blue-800 text-gray-200 py-4">
     <div class="container mx-auto px-4">
-      <header class="relative pb-4">
+      <header class="relative mb-8">
         <h1 class="text-3xl italic"><%= link_to 'Dream on!', root_path, class: "text-red-400" %></h1>
         <span class="text-red-300 italic text-xs absolute -mt-2">all your dreams in one place</span>
         <div class="text-xs md:absolute md:top-0 md:right-0 mt-8 md:mt-0">
@@ -35,11 +35,11 @@
         </div>
 
         <% if user_signed_in? %>
-        <nav class="mt-8 justify-center">
-          <ul class="flex flex-wrap text-xs text-center md:text-left">
-              <li class="md:mr-3 mb-2 md:mb-0 flex-grow md:flex-grow-0"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn" %>
-              <li class="md:mr-3 mb-2 md:mb-0 flex-grow md:flex-grow-0"><%= active_link_to 'Show all dreams', root_path, active: :exact, :class => "btn" %>
-              <li class="md:mr-3 flex-grow md:flex-grow-0"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn" %>
+        <nav class="mt-8 flex justify-center md:justify-start">
+          <ul class="flex flex-col xl:flex-row text-xs text-center md:text-left">
+              <li class="md:mr-3 mb-2 xl:mb-0 max-w-xs"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn" %>
+              <li class="md:mr-3 mb-2 xl:mb-0 max-w-xs"><%= active_link_to 'Show all dreams', root_path, active: :exact, :class => "btn" %>
+              <li class="md:mr-3 max-w-xs"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn" %>
           </ul>
         </nav>
         <% end %>
