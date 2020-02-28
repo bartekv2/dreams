@@ -21,8 +21,8 @@
   <body class="bg-blue-800 text-gray-200 py-4">
     <div class="container mx-auto px-4">
       <header class="relative mb-8">
-        <h1 class="text-3xl italic"><%= link_to 'Dream on!', root_path, class: "text-red-400" %></h1>
-        <span class="text-red-300 italic text-xs absolute -mt-2">all your dreams in one place</span>
+        <h1 class="text-3xl italic"><%= link_to 'DreamDiary.online', root_path, class: "text-red-400" %></h1>
+        <span class="text-red-300 italic text-xs absolute -mt-2">your online dream diary</span>
         <div class="text-xs md:absolute md:top-0 md:right-0 mt-8 md:mt-0">
           <% if user_signed_in? %>
             <%= current_user.username %>
