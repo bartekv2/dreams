@@ -88,11 +88,11 @@ a.btn.active {
 }
 
 .notice {
-  @apply bg-green-400 text-gray-700 rounded py-2 px-4;
+  @apply bg-green-400 text-gray-700 rounded py-2 px-4 mb-4;
 }
 
 .alert {
-  @apply bg-red-400 text-gray-700 rounded py-2 px-4;
+  @apply bg-red-400 text-gray-700 rounded py-2 px-4 mb-4;
 }
 
 input:checked + svg {

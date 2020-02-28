@@ -30,8 +30,13 @@ class PostsController < ApplicationController
     @user = User.find(current_user.id)
     @post = @user.posts.create(post_params)
     if @post.save
-      flash[:notice] = "Dream added successfully."
-      redirect_to @post
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Dream added successfully."
+          redirect_to @post
+        end
+        format.js { }
+      end
     else
       render 'new'
     end

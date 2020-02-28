@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def show_footer
-    simple_format "<p>© #{DateTime.now.year} all rights reserved</p>".upcase
+  def get_footer
+    simple_format "© #{DateTime.now.year} all rights reserved".upcase
   end
 
   def get_number_of_dreams
