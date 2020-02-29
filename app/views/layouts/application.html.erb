@@ -21,21 +21,21 @@
   <body class="bg-blue-800 text-gray-200 py-4">
     <div class="container mx-auto px-4">
       <header class="relative mb-8">
-        <h1 class="text-lg md:text-3xl italic"><%= link_to 'DreamDiary.online', root_path, class: "text-red-400" %></h1>
-        <span class="text-red-300 italic text-xs absolute -mt-1 md:-mt-2">your online dream diary</span>
-        <div class="text-xs md:absolute md:top-0 md:right-0 mt-8 md:mt-0">
+        <h1 class="text-2xl md:text-4xl italic font-bold tracking-wider"><%= link_to 'DreamDiary.online', root_path, class: "text-red-400" %></h1>
+        <span class="text-red-300 italic text-sm md:text-base absolute -mt-1 md:-mt-2 tracking-wider">your online dream diary</span>
+        <div class="md:absolute md:top-0 md:right-0 mt-8 md:mt-0">
           <% if user_signed_in? %>
             <%= current_user.username %>
-            <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+            <%= active_link_to 'Sign out', destroy_user_session_path, method: :delete %>
           <% else %>
-            <%= link_to 'Log in', new_user_session_path %>
-            <%= link_to "Sign up", new_user_registration_path %>
+            <%= active_link_to 'Log in', new_user_session_path %>
+            <%= active_link_to "Sign up", new_user_registration_path %>
           <% end %>
           <%= active_link_to 'About', about_path %>
         </div>
         <% if user_signed_in? %>
         <nav class="mt-8 flex justify-center md:justify-start">
-          <ul class="flex flex-col lg:flex-row text-xs text-center md:text-left">
+          <ul class="flex flex-col lg:flex-row text-center md:text-left">
               <li class="md:mr-3 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn" %>
               <li class="md:mr-3 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Show all dreams', root_path, active: :exact, :class => "btn" %>
               <li class="md:mr-3 max-w-xs"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn" %>
@@ -47,7 +47,7 @@
         <main class="flex w-full md:w-2/3">
           <%= yield %>
         </main>
-        <aside class="md:w-1/3 md:pl-8 mt-4 md:mt-0 text-right text-xs">
+        <aside class="md:w-1/3 md:pl-8 mt-4 md:mt-0 text-right">
           <ul>
             <li class="mb-1">Total Dreams: <%= get_number_of_dreams %></li>
             <li class="mb-1">Total Dreamers: <%= get_number_of_dreamers %></li>
@@ -55,7 +55,7 @@
           </ul>
         </aside>
       </div>
-      <footer class="text-center text-xs my-8">
+      <footer class="text-center my-8">
         <%= get_footer %>
       </footer>
     </div>

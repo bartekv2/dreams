@@ -2,25 +2,28 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @font-face {
-  font-family: "Kanit-Regular";
-  font-family: "PressStart2P-Regular";
-  src: url('/assets/Kanit-Regular');
-  src: url('/assets/PressStart2P-Regular');
+  font-family: "Commodore-Rounded";
+  src: url('/assets/Commodore-Rounded-v1.2');
 }
-body {
-  font-family: "PressStart2P-Regular", sans-serif
+@font-face {
+  font-family: "Kanit-Regular";
+  src: url('/assets/Kanit-Regular');
 }
 
-h1 {
-  @apply text-2xl font-bold;
+body {
+  font-family: "Commodore-Rounded", sans-serif
+}
+
+article, #post_title, #post_content {
+  font-family: "Kanit-Regular", sans-serif
 }
 
 h2 {
-  @apply text-xl font-bold;
+  @apply text-2xl font-bold;
 }
 
 h3 {
-  @apply font-bold;
+  @apply text-xl font-bold;
 }
 
 a {
@@ -100,7 +103,7 @@ input:checked + svg {
   }
 
 .error_notification {
-  @apply text-xs mb-4;
+  @apply mb-4;
 }
 
 .hint, .error {

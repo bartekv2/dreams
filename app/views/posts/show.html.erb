@@ -5,11 +5,11 @@
     <% end %>
   <% end %>
   <section>
-    <h3 class="mb-4 text-xl"><%= @post.title %></h3>
+    <h3 class="mb-2"><%= @post.title %></h3>
     <article>
       <%= simple_format @post.content %>
-      <div class="text-xs text-gray-500 mt-2"><%= get_author_and_time(@post) %></div>
     </article>
+    <div class="text-xs text-gray-500 mt-2"><%= get_author_and_time(@post) %></div>
     <% if user_signed_in? && current_user.id == @post.user_id %>
       <div class="pt-4 flex">
         <% if @post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 px-4 py-2 mr-4 rounded">Private</span><% end %>
