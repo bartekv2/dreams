@@ -14,16 +14,16 @@ body {
   font-family: "Commodore-Rounded", sans-serif
 }
 
-article, #post_title, #post_content {
+article, #post_title, #post_content, #users {
   font-family: "Kanit-Regular", sans-serif
 }
 
 h2 {
-  @apply text-2xl font-bold;
+  @apply text-2xl font-bold mb-4;
 }
 
 h3 {
-  @apply text-xl font-bold;
+  @apply text-2xl tracking-wider font-bold;
 }
 
 a {
@@ -83,7 +83,7 @@ a.btn.active {
 }
 
 .input input.string, .input input.password, .input textarea {
-  @apply bg-blue-800 appearance-none border border-dashed border-gray-200 w-full py-2 px-4 text-gray-200 leading-tight rounded;
+  @apply bg-blue-800 appearance-none border border-gray-200 w-full py-2 px-4 text-gray-200 leading-tight rounded;
 }
 
 .input input.string:focus, .input input.password:focus, .input textarea:focus {

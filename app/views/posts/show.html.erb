@@ -5,16 +5,16 @@
     <% end %>
   <% end %>
   <section>
-    <h3 class="mb-2"><%= @post.title %></h3>
     <article>
+      <h3 class="mb-2"><%= @post.title %></h3>
       <%= simple_format @post.content %>
+      <div class="text-gray-500 mt-2"><%= get_author_and_time(@post) %></div>
     </article>
-    <div class="text-xs text-gray-500 mt-2"><%= get_author_and_time(@post) %></div>
-    <% if user_signed_in? && current_user.id == @post.user_id %>
+    <% if (user_signed_in? && current_user.id == @post.user_id) || current_user.try(:admin?)%>
       <div class="pt-4 flex">
         <% if @post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 px-4 py-2 mr-4 rounded">Private</span><% end %>
-        <%= button_to "Edit", edit_post_path(@post), method: :get, :class => "btn mr-4" %>
-        <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn del" %>
+        <%= link_to "Edit", edit_post_path(@post), method: :get, :class => "btn mr-4" %>
+        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn del" %>
       </div>
     <% end %>
   </section>

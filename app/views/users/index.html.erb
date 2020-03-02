@@ -1,0 +1,35 @@
+<div id="users">
+  <% if !flash.empty? %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
+  <% end %>
+  <h2>Users</h2>
+  <table class="table-auto">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">ID</th>
+        <th class="px-4 py-2">Username</th>
+        <th class="px-4 py-2">Email</th>
+        <th class="px-4 py-2">Registration date</th>
+        <th class="px-4 py-2 w-1/4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="border px-4 py-2"><%= user.id %></td>
+          <td class="border px-4 py-2"><%= user.username %></td>
+          <td class="border px-4 py-2"><%= user.email %></td>
+          <td class="border px-4 py-2"><%= user.created_at.strftime("%F %T") %></td>
+          <td class="border px-4 py-2">
+            <div class="flex">
+              <%= link_to 'Edit', edit_user_path(user), :class => "btn btn-small mr-4 inline-block" %>
+              <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-small del inline-block" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

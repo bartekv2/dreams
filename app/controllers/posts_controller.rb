@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
-  before_action :post_owner?, only: [:edit, :update, :destroy]
+  before_action :post_owner_or_admin?, only: [:edit, :update, :destroy]
   before_action :grant_access!, only: [:show]
 
   def index
@@ -30,13 +30,8 @@ class PostsController < ApplicationController
     @user = User.find(current_user.id)
     @post = @user.posts.create(post_params)
     if @post.save
-      respond_to do |format|
-        format.html do
-          flash[:notice] = "Dream added successfully."
-          redirect_to @post
-        end
-        format.js { }
-      end
+      flash[:notice] = "Dream added successfully."
+      redirect_to @post
     else
       render 'new'
     end
@@ -80,16 +75,18 @@ class PostsController < ApplicationController
   end
 
   def show_all_dreams
-    if user_signed_in?
+    if current_user.try(:admin?)
+      Post.all
+    elsif user_signed_in?
       Post.where(user_id: current_user.id).or(Post.where(private: false)).order("created_at DESC")
     else
       Post.where(private: false).order("created_at DESC")
     end
   end
 
-  def post_owner?
+  def post_owner_or_admin?
     @user_id = Post.find(params[:id]).user_id
-    if user_signed_in? && current_user.id == @user_id
+    if (user_signed_in? && current_user.id == @user_id) || current_user.admin?
       return true
     else
       flash[:notice] = "Access denied."
@@ -102,7 +99,7 @@ class PostsController < ApplicationController
   end
 
   def grant_access!
-    if post_private? && post_owner?
+    if post_private? && post_owner_or_admin?
       return true
     elsif !post_private?
       return true
