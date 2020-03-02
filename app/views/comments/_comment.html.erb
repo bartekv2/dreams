@@ -1,0 +1,9 @@
+<div class="my-4 pb-2 border-b border-gray-300">
+  <%= get_comment_author_and_time(comment) %>
+  <p class="text-gray-600"><%= comment.comment %></p>
+  <% if (user_signed_in? && current_user.username == comment.name) || current_user.try(:admin?)%>
+    <div class="flex justify-end">
+      <%= link_to 'Delete', [comment.post, comment], method: :delete, class: "btn btn-small del", data: { confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
+</div>

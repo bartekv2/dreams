@@ -10,18 +10,19 @@
   <% end %>
   <% @posts.each do |post| %>
     <section class="pb-4">
-      <div class="border-b border-indigo-300 pb-2 md:pb-6">
+      <div class="border-b border-gray-300 pb-2 md:pb-6">
         <article>
-          <h3 class="mb-2"><%= link_to post.title, post %></h3>
+          <h3 class="mb-2"><%= link_to post.title, post%></h3>
           <%= simple_format truncate(post.content, length: 250) { link_to " read more", post } %>
-          <div class="text-base text-gray-500 mt-2"><%= get_author_and_time(post) %></div>
+          <p class="mt-2"><%= get_author_and_time(post) %></p>
+          <p><%= link_to post.comments.count.to_s + " comments", post_path(post, anchor: 'comments') %></p>
         </article>
         <div class="relative">
           <% if (user_signed_in? && current_user.id == post.user_id) || current_user.try(:admin?) %>
             <div class="md:absolute flex justify-end mt-2 md:-mt-4 right-0 top-0 flex">
-              <% if post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 text-xs px-4 py-2 mr-4 md:mr-0 rounded">Private</span><% end %>
-              <%= link_to "Edit", edit_post_path(post), method: :get, :class => "btn btn-small md:ml-4 mr-4 inline-block" %>
-              <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-small del inline-block" %>
+              <% if post.private %><span class="private text-xs mr-2 md:mr-0">Private</span><% end %>
+              <%= link_to "Edit", edit_post_path(post), method: :get, :class => "btn md:ml-2 mr-2 inline-block" %>
+              <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn del inline-block" %>
             </div>
           <% end %>
         </div>

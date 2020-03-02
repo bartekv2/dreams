@@ -1,4 +1,4 @@
-<div>
+<div class="w-full">
   <% if !flash.empty? %>
     <% flash.each do |key, value| %>
       <%= content_tag :div, value, class: "flash #{key} mb-4" %>
@@ -8,14 +8,24 @@
     <article>
       <h3 class="mb-2"><%= @post.title %></h3>
       <%= simple_format @post.content %>
-      <div class="text-gray-500 mt-2"><%= get_author_and_time(@post) %></div>
+      <div class="flex">
+        <div class="mt-2"><%= get_author_and_time(@post) %></div>
+        <% if (user_signed_in? && current_user.id == @post.user_id) || current_user.try(:admin?)%>
+          <div class="pt-4 flex-1 text-right">
+            <% if @post.private %><span class="private mr-2">Private</span><% end %>
+            <%= link_to "Edit", edit_post_path(@post), method: :get, :class => "btn mr-2" %>
+            <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn del" %>
+          </div>
+        </div>
+      <% end %>
     </article>
-    <% if (user_signed_in? && current_user.id == @post.user_id) || current_user.try(:admin?)%>
-      <div class="pt-4 flex">
-        <% if @post.private %><span class="inline-block font-bold bg-gray-200 text-gray-700 px-4 py-2 mr-4 rounded">Private</span><% end %>
-        <%= link_to "Edit", edit_post_path(@post), method: :get, :class => "btn mr-4" %>
-        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn del" %>
-      </div>
+  </section>
+  <section class="mt-8" id="comments">
+    <p class="border border-t-1 border-b-0 border-l-0 border-r-0 pt-2"><%= @post.comments.count %> comments</p>
+    <%= render @post.comments %>
+    <% if user_signed_in? %>
+      <h4 class="text-xl mb-2">Leave a comment</h4>
+      <%= render 'comments/form' %>
     <% end %>
   </section>
 </div>

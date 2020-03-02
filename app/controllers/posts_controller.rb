@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show, :update, :edit, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   before_action :post_owner_or_admin?, only: [:edit, :update, :destroy]
   before_action :grant_access!, only: [:show]
 
   def index
-    @posts = show_all_dreams.page(params[:page]).per(5)
+    @posts = show_all_dreams.order("created_at DESC").page(params[:page]).per(5)
   end
 
   def mydreams
@@ -39,12 +40,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @user_id = Post.find(params[:id]).user_id
+    @user_id = @post.user_id
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "Dream updated successfully."
       redirect_to @post
@@ -54,14 +53,12 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = "Dream deleted successfully."
-    redirect_back(fallback_location: root_path)
+    redirect_to posts_path
   end
 
   def get_author_by_post_id(post_id)
@@ -74,13 +71,17 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :private)
   end
 
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
   def show_all_dreams
     if current_user.try(:admin?)
       Post.all
     elsif user_signed_in?
-      Post.where(user_id: current_user.id).or(Post.where(private: false)).order("created_at DESC")
+      Post.where(user_id: current_user.id).or(Post.where(private: false))
     else
-      Post.where(private: false).order("created_at DESC")
+      Post.where(private: false)
     end
   end
 
