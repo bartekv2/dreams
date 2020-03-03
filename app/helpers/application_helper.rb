@@ -30,4 +30,10 @@ module ApplicationHelper
   def get_logo
     "<span class=\"text-teal-600\">D</span>ream<span class=\"text-teal-600\">D</span>iary<span class=\"text-teal-600\">.</span><span class=\"text-gray-600\">online</span>".html_safe
   end
+
+  def get_comments_count(post)
+    num = post.comments.count
+    num == 1 ? com = " comment" : com = " comments"
+    num.to_s + com
+  end
 end

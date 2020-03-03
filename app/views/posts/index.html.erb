@@ -15,7 +15,7 @@
           <h3 class="mb-2"><%= link_to post.title, post%></h3>
           <%= simple_format truncate(post.content, length: 250) { link_to " read more", post } %>
           <p class="mt-2"><%= get_author_and_time(post) %></p>
-          <p><%= link_to post.comments.count.to_s + " comments", post_path(post, anchor: 'comments') %></p>
+          <p><%= link_to get_comments_count(post), post_path(post, anchor: 'comments') %></p>
         </article>
         <div class="relative">
           <% if (user_signed_in? && current_user.id == post.user_id) || current_user.try(:admin?) %>
