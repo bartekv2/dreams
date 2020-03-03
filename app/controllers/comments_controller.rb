@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -17,6 +18,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
+    flash[:notice] = "Comment deleted successfully."
     redirect_to post_path(@post)
   end
 end

@@ -27,7 +27,7 @@ h2 {
 }
 
 h3 {
-  @apply text-2xl tracking-wider font-bold;
+  @apply text-2xl tracking-wide font-bold;
 }
 
 a {
@@ -112,4 +112,8 @@ input:checked + svg {
 
 .hint, .error {
   @apply block text-xs mt-1;
+}
+
+.error {
+  @apply text-red-500;
 }

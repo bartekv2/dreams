@@ -1,4 +1,7 @@
 module ApplicationHelper
+  def get_welcome_text
+    simple_format "You dream about 100 minutes every night, but forget 95% of your dreams 8 minutes after waking up. This website was created so that it never happens again . Please " + active_link_to('Log in', new_user_session_path) + " or " + active_link_to("Sign up", new_user_registration_path) + " and add your first dream. You can make it public or private."
+  end
   def get_footer
     simple_format "© #{DateTime.now.year} all rights reserved".upcase
   end

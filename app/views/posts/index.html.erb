@@ -1,5 +1,8 @@
 <% content_for :title, "DreamDiary.online" %>
 <div class="w-full">
+  <% if !user_signed_in? %>
+    <section class="text-gray-600 mb-4"><%= get_welcome_text %></section>
+  <% end %>
   <% if !flash.empty? %>
     <% flash.each do |key, value| %>
       <%= content_tag :div, value, class: "flash #{key}" %>
