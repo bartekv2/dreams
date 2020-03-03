@@ -90,7 +90,7 @@ class PostsController < ApplicationController
     if (user_signed_in? && current_user.id == @user_id) || current_user.admin?
       return true
     else
-      flash[:notice] = "Access denied."
+      flash[:alert] = "Access denied."
       redirect_to root_path
     end
   end
