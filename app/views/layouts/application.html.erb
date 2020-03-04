@@ -25,7 +25,7 @@
           <h1 class="text-3xl md:text-5xl tracking-wider p-0 leading-none" style="font-family: 'Unna-Bold'"><%= link_to get_logo, root_path, class: "text-gray-800" %></h1>
           <span class="text-gray-700 italic text-sm md:text-base absolute -mt-1 md:-mt-2 tracking-wide" style="font-family: 'Unna-Italic'">your online dream diary</span>
         </div>
-        <div class="md:absolute md:top-0 md:right-0">
+        <div class="md:absolute md:top-0 md:right-0 mb-4 md:mb-0 text-right">
           <% if user_signed_in? %>
             <%= current_user.username %>
             <%= active_link_to 'Sign out', destroy_user_session_path, method: :delete %>
