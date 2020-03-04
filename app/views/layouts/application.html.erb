@@ -5,26 +5,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="You dream about 100 minutes every night, but forget 95% of your dreams. To prevent it, log your dreams with DreamDiary.online.">
     <%= favicon_link_tag asset_path('favicon.ico') %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Kameron:400,700|Unna:700|Zilla+Slab+Highlight:700&display=swap" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159138064-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-159138064-1');
     </script>
   </head>
-  <body class="bg-gray-200 text-gray-800 py-4">
+  <body class="bg-gray-200 text-gray-800 py-4 bg-right-bottom bg-no-repeat bg-contain bg-fixed" style="background-image: url('/assets/bg.png');">
     <div class="container mx-auto px-4">
-      <header class="relative mb-8">
-        <h1 class="text-3xl md:text-4xl tracking-wider p-0 leading-none" style="font-family: 'Unna-Bold'"><%= link_to get_logo, root_path, class: "text-gray-800" %></h1>
-        <span class="text-gray-700 italic text-sm md:text-base absolute -mt-1 md:-mt-2 tracking-wide" style="font-family: 'Unna-Italic'">your online dream diary</span>
-        <div class="md:absolute md:top-0 md:right-0 mt-8 md:mt-0">
+      <header class="relative">
+        <div class="bg-right bg-no-repeat bg-contain inline-block h-16 md:h-20" style="background-image: url('/assets/flower.png');">
+          <h1 class="text-3xl md:text-5xl tracking-wider p-0 leading-none" style="font-family: 'Unna-Bold'"><%= link_to get_logo, root_path, class: "text-gray-800" %></h1>
+          <span class="text-gray-700 italic text-sm md:text-base absolute -mt-1 md:-mt-2 tracking-wide" style="font-family: 'Unna-Italic'">your online dream diary</span>
+        </div>
+        <div class="md:absolute md:top-0 md:right-0">
           <% if user_signed_in? %>
             <%= current_user.username %>
             <%= active_link_to 'Sign out', destroy_user_session_path, method: :delete %>
