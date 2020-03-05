@@ -14,6 +14,16 @@
   src: url('/assets/Kanit-Regular');
 }
 
+.container {
+  background-image: url('/assets/logo.png');
+}
+
+@media (min-width:768px) {
+  .container {
+    background-image: url('/assets/logo_color.png');
+  }
+}
+
 body {
   font-family: "Kanit-Regular", sans-serif
 }

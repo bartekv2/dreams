@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="You dream about 100 minutes every night, but forget 95% of your dreams. To prevent it, log your dreams with DreamDiary.online.">
+    <meta name="description" content="You dream about 100 minutes every night, but forget 95% of your dreams. Log them with DreamDiary.online instead.">
     <%= favicon_link_tag asset_path('favicon.ico') %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -18,14 +18,16 @@
       gtag('config', 'UA-159138064-1');
     </script>
   </head>
-  <body class="bg-gray-200 text-gray-800 py-4 bg-right-bottom bg-no-repeat bg-contain bg-local md:bg-fixed" style="background-image: url('/assets/bg.png');">
-    <div class="container mx-auto px-4">
+  <body class="bg-gray-200 text-gray-800 pb-4 bg-right-bottom bg-no-repeat bg-contain bg-local md:bg-fixed" style="background-image: url('/assets/bg.png');">
+    <div class="container mx-auto px-4 md:pl-40 bg-no-repeat bg-right-top md:bg-left-top">
       <header class="relative">
-        <div class="h-16 md:h-20 max-w-xs md:max-w-md">
-          <h1 class="text-3xl md:text-5xl tracking-wider p-0 leading-none" style="font-family: 'Unna-Bold'"><%= link_to get_logo, root_path, class: "text-gray-800" %></h1>
+        <div class="h-16 md:h-20 max-w-xs md:max-w-md pt-4 mb-4">
+          <h1 class="text-3xl md:text-5xl tracking-wider p-0 leading-none" style="font-family: 'Unna-Bold'">
+            <%= link_to get_logo, root_path, class: "text-gray-800" %>
+          </h1>
           <span class="text-gray-700 italic text-sm md:text-base absolute -mt-1 md:-mt-2 tracking-wide" style="font-family: 'Unna-Italic'">your online dream diary</span>
         </div>
-        <div class="md:absolute md:top-0 md:right-0 mb-4 md:mb-0 text-right">
+        <div class="md:absolute md:top-0 md:right-0 mt-4 mb-4 md:mb-0">
           <% if user_signed_in? %>
             <%= current_user.username %>
             <%= active_link_to 'Sign out', destroy_user_session_path, method: :delete %>
@@ -35,7 +37,7 @@
           <% end %>
         </div>
         <% if user_signed_in? %>
-          <nav class="flex justify-center md:justify-start mb-4">
+          <nav class="flex justify-center md:justify-start my-4">
             <ul class="flex flex-col lg:flex-row flex-grow text-center lg:text-left">
                 <li class="md:mr-2 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn min-w-full" %>
                 <li class="md:mr-2 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Show all dreams', root_path, active: :exact, :class => "btn min-w-full" %>
