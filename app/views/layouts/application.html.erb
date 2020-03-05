@@ -39,7 +39,7 @@
         <% if user_signed_in? %>
           <nav class="flex justify-center md:justify-start my-4">
             <ul class="flex flex-col lg:flex-row flex-grow text-center lg:text-left">
-                <li class="md:mr-2 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Create a new dream', new_post_path,  :class => "btn min-w-full" %>
+                <li class="md:mr-2 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Add a new dream', new_post_path,  :class => "btn min-w-full" %>
                 <li class="md:mr-2 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Show all dreams', root_path, active: :exact, :class => "btn min-w-full" %>
                 <li class="md:mr-2 mb-2 lg:mb-0 max-w-xs"><%= active_link_to 'Show my dreams only', mydreams_posts_path, :class => "btn min-w-full" %>
                 <% if current_user.try(:admin?) %>
