@@ -19,7 +19,7 @@
         <article>
           <h3 class="mb-2"><%= link_to post.title, post %></h3>
           <%= simple_format truncate(post.content, length: 250) { link_to " read more", post } %>
-          <div id="tags" class="mt-2">
+          <div class="tags mt-2">
             <% post.tags.each do |t| %>
               <%= active_link_to t.name, dreams_by_tag_posts_path(:tag_id => t.id), active: :exact %>
             <% end %>

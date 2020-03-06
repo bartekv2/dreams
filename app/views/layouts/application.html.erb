@@ -53,11 +53,11 @@
         <main class="w-full md:w-3/4">
           <%= yield %>
         </main>
-        <aside class="md:w-1/4 md:pl-8 mt-4 md:mt-0 md:text-right">
-          <h4 class="text-xl font-bold mb-2">Categories</h4>
-          <ul class="border-b border-gray-300 pb-3 mb-4 flex flex-wrap md:block">
+        <aside class="md:w-1/4 md:pl-8 mt-4 md:mt-0 text-center">
+          <h4 class="text-xl font-bold mb-2">Tags</h4>
+          <ul class="tags border-b border-gray-300 pb-3 mb-4 flex flex-wrap justify-center">
             <% Tag.all.each do |t| %>
-              <li class="mb-1 mr-4 md:mr-0"><%= active_link_to t.name, dreams_by_tag_posts_path(:tag_id => t.id), active: :exact %></li>
+              <li class="mb-1 mr-4"><%= active_link_to t.name, dreams_by_tag_posts_path(:tag_id => t.id), active: :exact %></li>
             <% end %>
           </ul>
           <ul class="border-b border-gray-300 pb-3 mb-4">

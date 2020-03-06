@@ -28,7 +28,7 @@ module ApplicationHelper
     elsif current_page?(action: 'userdreams')
       "<h2>Showing dreams of ".html_safe + user + "</h2>".html_safe
     elsif current_page?(action: 'dreams_by_tag')
-      "<h2>Showing dreams in category: ".html_safe + Tag.find(params[:tag_id]).name + "</h2>".html_safe
+      "<h2>Showing dreams with tag: ".html_safe + Tag.find(params[:tag_id]).name + "</h2>".html_safe
     end
   end
 
