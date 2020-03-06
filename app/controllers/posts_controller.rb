@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :grant_access!, only: [:show]
 
   def index
-    @posts = show_all_dreams.order("created_at DESC").page(params[:page]).per(5)
+    @posts = show_all_dreams(Post.all).order("created_at DESC").page(params[:page]).per(5)
   end
 
   def mydreams
@@ -13,8 +13,14 @@ class PostsController < ApplicationController
     render action: 'index'
   end
 
+  def dreams_by_tag
+    @tag = Tag.find_by id: params[:tag_id]
+    @posts = show_all_dreams(@tag.posts).order("created_at DESC").page(params[:page]).per(5)
+    render action: 'index'
+  end
+
   def userdreams
-    @posts = show_all_dreams.where(user_id: params[:user_id]).order("created_at DESC").page(params[:page]).per(5)
+    @posts = show_all_dreams(Post.all).where(user_id: params[:user_id]).order("created_at DESC").page(params[:page]).per(5)
     @user = User.find(params[:user_id]).username
     if user_signed_in? && current_user.username == @user
       redirect_to controller: :posts, action: :mydreams, method: :post
@@ -68,20 +74,20 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :content, :private)
+    params.require(:post).permit(:title, :content, :private, tag_ids:[])
   end
 
   def find_post
     @post = Post.find(params[:id])
   end
 
-  def show_all_dreams
+  def show_all_dreams(posts)
     if current_user.try(:admin?)
-      Post.all
+      posts
     elsif user_signed_in?
-      Post.where(user_id: current_user.id).or(Post.where(private: false))
+      posts.where(user_id: current_user.id).or(posts.where(private: false))
     else
-      Post.where(private: false)
+      posts.where(private: false)
     end
   end
 

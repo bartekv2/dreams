@@ -72,16 +72,16 @@ a.active {
   @apply bg-teal-700;
 }
 
-a.btn {
-  @apply inline-block tracking-wider;
+a.btn, #tags a {
+  @apply inline-block tracking-wider bg-teal-600;
 }
 
-a.btn:hover, a.btn:focus, a.btn:active {
-  @apply text-gray-200;
+a.btn:hover, a.btn:focus, a.btn:active, #tags a:hover, #tags a:focus, #tags a:active {
+  @apply text-gray-200 bg-teal-500;
 }
 
-a.btn.active {
-  @apply text-gray-200 bg-teal-700;
+a.btn.active, #tags a.active {
+  @apply bg-teal-700 text-gray-200;
 }
 
 .del {
@@ -126,4 +126,8 @@ input:checked + svg {
 
 .error {
   @apply text-red-500;
+}
+
+#tags a {
+  @apply text-xs text-gray-200 rounded-full px-4;
 }

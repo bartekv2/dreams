@@ -1,4 +1,5 @@
 <% content_for :title, "DreamDiary.online" %>
+<%= @dupa %>
 <div class="w-full">
   <% if !user_signed_in? %>
     <section class="text-gray-600 mb-4"><%= get_welcome_text %></section>
@@ -16,8 +17,13 @@
     <section class="pb-4">
       <div class="border-b border-gray-300 pb-2 md:pb-6">
         <article>
-          <h3 class="mb-2"><%= link_to post.title, post%></h3>
+          <h3 class="mb-2"><%= link_to post.title, post %></h3>
           <%= simple_format truncate(post.content, length: 250) { link_to " read more", post } %>
+          <div id="tags" class="mt-2">
+            <% post.tags.each do |t| %>
+              <%= active_link_to t.name, dreams_by_tag_posts_path(:tag_id => t.id), active: :exact %>
+            <% end %>
+          </div>
           <p class="mt-2"><%= get_author_and_time(post) %></p>
           <p><%= link_to get_comments_count(post), post_path(post, anchor: 'comments') %></p>
         </article>
