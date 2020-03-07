@@ -2,7 +2,7 @@
 <%= f.input :title, label: false, placeholder: "Dream name" %>
 <%= f.input :content, label: false, placeholder: "Describe your dream here.", input_html: { class: "mt-4 h-64" } %>
 
-<div class="flex flex-wrap mb-6">
+<div class="flex flex-wrap mt-2 mb-6">
   <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |t| %>
   <label class="flex justify-start items-start mt-2 inline-block w-40 text-sm">
     <div class="inline-block bg-white border rounded border-gray-600 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
