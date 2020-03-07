@@ -5,22 +5,22 @@ class PostsController < ApplicationController
   before_action :grant_access!, only: [:show]
 
   def index
-    @posts = show_all_dreams(Post.all).order("created_at DESC").page(params[:page]).per(5)
+    @posts = show_all_dreams(Post.all).order("created_at DESC").page(params[:page]).per(8)
   end
 
   def mydreams
-    @posts = Post.where(user_id: current_user.id).order("created_at DESC").page(params[:page]).per(5)
+    @posts = Post.where(user_id: current_user.id).order("created_at DESC").page(params[:page]).per(8)
     render action: 'index'
   end
 
   def dreams_by_tag
     @tag = Tag.find_by id: params[:tag_id]
-    @posts = show_all_dreams(@tag.posts).order("created_at DESC").page(params[:page]).per(5)
+    @posts = show_all_dreams(@tag.posts).order("created_at DESC").page(params[:page]).per(8)
     render action: 'index'
   end
 
   def userdreams
-    @posts = show_all_dreams(Post.all).where(user_id: params[:user_id]).order("created_at DESC").page(params[:page]).per(5)
+    @posts = show_all_dreams(Post.all).where(user_id: params[:user_id]).order("created_at DESC").page(params[:page]).per(8)
     @user = User.find(params[:user_id]).username
     if user_signed_in? && current_user.username == @user
       redirect_to controller: :posts, action: :mydreams, method: :post
