@@ -42,4 +42,14 @@ module ApplicationHelper
     num.to_s + com
   end
 
+  def get_class_for_current_page(current_page, total_pages)
+    if total_pages == current_page
+      " current rounded-r"
+    elsif (current_page == 1)
+      " current rounded-l"
+    else
+      " current"
+    end
+  end
+
 end

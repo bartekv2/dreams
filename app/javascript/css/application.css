@@ -131,3 +131,27 @@ input:checked + svg {
 .tags a {
   @apply text-xs text-gray-200 rounded-full px-4;
 }
+
+.pagination {
+  @apply inline-flex bg-teal-600 rounded text-xs;
+}
+
+.pagination span.current {
+  @apply bg-teal-700 text-gray-200 px-2 py-1;
+}
+
+.pagination span.gap {
+  @apply text-gray-200 px-2;
+}
+
+.pagination span a {
+  @apply inline-block text-gray-200 px-2 py-1;
+}
+
+.pagination span a:hover {
+  @apply bg-teal-500;
+}
+
+.pagination span a:active {
+  @apply bg-teal-700;
+}
