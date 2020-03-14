@@ -18,8 +18,8 @@
         <div class="mt-2"><%= get_author_and_time(@post) %></div>
         <% if (user_signed_in? && current_user.id == @post.user_id) || current_user.try(:admin?)%>
           <div class="pt-4 flex-auto text-right">
-            <% if @post.private %><span class="private mr-2">Private</span><% end %>
-            <%= link_to "Edit", edit_post_path(@post), method: :get, :class => "btn mr-2" %>
+            <% if @post.private %><span class="private mr-1">Private</span><% end %>
+            <%= link_to "Edit", edit_post_path(@post), method: :get, :class => "btn mr-1" %>
             <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn del" %>
           </div>
         </div>

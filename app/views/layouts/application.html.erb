@@ -73,5 +73,21 @@
         <%= get_footer %>
       </footer>
     </div>
+    <script>
+      function validate() {
+        let inputError = document.getElementById('inputError');
+        let new_comment = document.getElementById('new_comment');
+        let input = document.forms["new_comment"]["comment_comment"].value;
+          if (input.length > 0) {
+            inputError.innerText = "";
+            return true;
+          }
+          else {
+            inputError.innerText = "comment can't be blank";
+            inputError.classList.add("mt-2");
+            return false;
+          }
+        }
+    </script>
   </body>
 </html>

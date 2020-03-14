@@ -1,12 +1,6 @@
 <%= simple_form_for([@post, @post.comments.build]) do |f| %>
 <%= f.input :name, label: false, input_html: { value: current_user.username, class: "hidden" } %>
 <%= f.input :comment, required: true, label: false, placeholder: "Your comment here.", input_html: { class: "h-24" } %>
-<% if @post.errors.any? %>
-<ul>
-  <% @post.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
-<%= f.button :submit, 'Add Comment', class: "mt-4" %>
+<span id="inputError" class="error"></span>
+<%= f.button :submit, 'Add Comment', class: "mt-4", onclick: "return validate()" %>
 <% end %>
